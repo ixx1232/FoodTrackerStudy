@@ -46,11 +46,24 @@
                                     <action selector="setDefaultLabelText:" destination="BYZ-38-t0r" eventType="touchUpInside" id="2Sm-N2-O80"/>
                                 </connections>
                             </button>
+                            <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="defalultPhoto" translatesAutoresizingMaskIntoConstraints="NO" id="nLM-WD-AYl">
+                                <rect key="frame" x="20" y="200" width="320" height="320"/>
+                                <gestureRecognizers/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="320" id="hM1-Zo-MVq"/>
+                                    <constraint firstAttribute="width" constant="320" id="rix-lb-9IX"/>
+                                </constraints>
+                                <connections>
+                                    <outletCollection property="gestureRecognizers" destination="yld-UQ-S3l" appends="YES" id="88s-gN-Gv5"/>
+                                </connections>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="eeg-bc-MFt" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" constant="104" id="4WY-J8-Fh5"/>
+                            <constraint firstItem="nLM-WD-AYl" firstAttribute="top" secondItem="CVk-Zl-Cby" secondAttribute="bottom" constant="20" id="8Cx-Kw-Q0a"/>
                             <constraint firstAttribute="trailing" secondItem="eeg-bc-MFt" secondAttribute="trailing" constant="20" id="GmZ-WW-1zC"/>
+                            <constraint firstItem="nLM-WD-AYl" firstAttribute="leading" secondItem="CVk-Zl-Cby" secondAttribute="leading" id="Iss-RF-IfY"/>
                             <constraint firstItem="eeg-bc-MFt" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="20" id="Ngs-iK-N6L"/>
                             <constraint firstItem="eeg-bc-MFt" firstAttribute="top" secondItem="LwU-qa-gVw" secondAttribute="bottom" constant="13" id="VA2-ef-kQu"/>
                             <constraint firstItem="CVk-Zl-Cby" firstAttribute="leading" secondItem="eeg-bc-MFt" secondAttribute="leading" id="YEP-1w-ZbW"/>
@@ -61,11 +74,20 @@
                     <connections>
                         <outlet property="mealNameLabel" destination="LwU-qa-gVw" id="juL-vg-UXL"/>
                         <outlet property="nameTextField" destination="eeg-bc-MFt" id="G6S-vJ-YW9"/>
+                        <outlet property="photoImageView" destination="nLM-WD-AYl" id="Npb-PA-KA5"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="yld-UQ-S3l">
+                    <connections>
+                        <action selector="selectImageFromPhotoLibrary:" destination="BYZ-38-t0r" id="txS-SG-qZn"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="212" y="288"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="defalultPhoto" width="540" height="540"/>
+    </resources>
 </document>
