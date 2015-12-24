@@ -47,7 +47,7 @@
                                 </connections>
                             </button>
                             <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="defalultPhoto" translatesAutoresizingMaskIntoConstraints="NO" id="nLM-WD-AYl">
-                                <rect key="frame" x="20" y="200" width="320" height="320"/>
+                                <rect key="frame" x="20" y="164" width="320" height="320"/>
                                 <gestureRecognizers/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="320" id="hM1-Zo-MVq"/>
@@ -58,8 +58,7 @@
                                 </connections>
                             </imageView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="EhG-7s-Ll6" customClass="RatingControl" customModule="FoodTracker" customModuleProvider="target">
-                                <rect key="frame" x="36" y="528" width="240" height="44"/>
-                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                <rect key="frame" x="36" y="492" width="240" height="44"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="240" id="O5G-DE-Zeq"/>
                                     <constraint firstAttribute="height" constant="44" id="xd5-91-sQi"/>
@@ -69,6 +68,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="eeg-bc-MFt" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" constant="104" id="4WY-J8-Fh5"/>
+                            <constraint firstItem="nLM-WD-AYl" firstAttribute="top" secondItem="eeg-bc-MFt" secondAttribute="bottom" constant="30" id="6bq-le-Rmq"/>
                             <constraint firstItem="nLM-WD-AYl" firstAttribute="top" secondItem="CVk-Zl-Cby" secondAttribute="bottom" constant="20" id="8Cx-Kw-Q0a"/>
                             <constraint firstItem="EhG-7s-Ll6" firstAttribute="top" secondItem="nLM-WD-AYl" secondAttribute="bottom" constant="8" id="GlF-Ns-P7B"/>
                             <constraint firstAttribute="trailing" secondItem="eeg-bc-MFt" secondAttribute="trailing" constant="20" id="GmZ-WW-1zC"/>
@@ -76,15 +76,26 @@
                             <constraint firstItem="eeg-bc-MFt" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="20" id="Ngs-iK-N6L"/>
                             <constraint firstItem="eeg-bc-MFt" firstAttribute="top" secondItem="LwU-qa-gVw" secondAttribute="bottom" constant="13" id="VA2-ef-kQu"/>
                             <constraint firstItem="CVk-Zl-Cby" firstAttribute="leading" secondItem="eeg-bc-MFt" secondAttribute="leading" id="YEP-1w-ZbW"/>
+                            <constraint firstItem="nLM-WD-AYl" firstAttribute="leading" secondItem="eeg-bc-MFt" secondAttribute="leading" id="abM-Td-A6A"/>
                             <constraint firstItem="CVk-Zl-Cby" firstAttribute="top" secondItem="eeg-bc-MFt" secondAttribute="bottom" constant="16" id="iuI-ej-flc"/>
                             <constraint firstItem="EhG-7s-Ll6" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="36" id="l9T-f8-dHI"/>
                             <constraint firstItem="LwU-qa-gVw" firstAttribute="leading" secondItem="eeg-bc-MFt" secondAttribute="leading" id="lth-gj-bbt"/>
                         </constraints>
+                        <variation key="default">
+                            <mask key="subviews">
+                                <exclude reference="CVk-Zl-Cby"/>
+                            </mask>
+                            <mask key="constraints">
+                                <exclude reference="8Cx-Kw-Q0a"/>
+                                <exclude reference="Iss-RF-IfY"/>
+                            </mask>
+                        </variation>
                     </view>
                     <connections>
                         <outlet property="mealNameLabel" destination="LwU-qa-gVw" id="juL-vg-UXL"/>
                         <outlet property="nameTextField" destination="eeg-bc-MFt" id="G6S-vJ-YW9"/>
                         <outlet property="photoImageView" destination="nLM-WD-AYl" id="Npb-PA-KA5"/>
+                        <outlet property="ratingControl" destination="EhG-7s-Ll6" id="bEy-5U-sTr"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
