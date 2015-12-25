@@ -19,7 +19,15 @@ class MealTableViewController: UITableViewController {
         loadSampleMeals()
         
         navigationItem.leftBarButtonItem = editButtonItem()
-    }
+        
+        if let savedMeals = loadMeals() {
+            
+            meals += savedMeals
+        }else {
+            loadSampleMeals()
+        }
+        
+     }
 
     func loadSampleMeals() {
         
@@ -97,8 +105,10 @@ class MealTableViewController: UITableViewController {
                 meals.append(meal)
                 
                 tableView.insertRowsAtIndexPaths([newIndexPath], withRowAnimation: UITableViewRowAnimation.Bottom)
+                
+                
             }
-            
+            saveMeals()
         }
     }
     
@@ -109,9 +119,12 @@ class MealTableViewController: UITableViewController {
             
             meals.removeAtIndex(indexPath.row)
             
+            saveMeals()
+            
             tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: UITableViewRowAnimation.Fade)
             
         }else if editingStyle == UITableViewCellEditingStyle.Insert {
+            
             
         }
     }
@@ -122,4 +135,19 @@ class MealTableViewController: UITableViewController {
     }
     
     
+    // MAKR: NSCoding
+    func saveMeals() {
+        
+        let isSuccessfulSave = NSKeyedArchiver.archiveRootObject(meals, toFile: Meal.ArchiveURL.path!)
+        
+        if !isSuccessfulSave {
+            
+            print("Failed to save meals...")
+        }
+    }
+    
+    func loadMeals() ->[Meal]? {
+        
+        return NSKeyedUnarchiver.unarchiveObjectWithFile(Meal.ArchiveURL.path!) as? [Meal]
+    }
 }
