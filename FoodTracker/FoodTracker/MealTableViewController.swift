@@ -15,8 +15,6 @@ class MealTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        loadSampleMeals()
         
         navigationItem.leftBarButtonItem = editButtonItem()
         
@@ -42,6 +40,7 @@ class MealTableViewController: UITableViewController {
         
         meals += [meal1, meal2, meal3]
     }
+    
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         
         return 1
@@ -146,7 +145,7 @@ class MealTableViewController: UITableViewController {
         }
     }
     
-    func loadMeals() ->[Meal]? {
+    func loadMeals() -> [Meal]? {
         
         return NSKeyedUnarchiver.unarchiveObjectWithFile(Meal.ArchiveURL.path!) as? [Meal]
     }

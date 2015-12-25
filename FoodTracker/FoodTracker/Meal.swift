@@ -46,7 +46,7 @@ class Meal: NSObject, NSCoding {
         
         aCoder.encodeObject(name, forKey: PropertyKey.nameKey)
         aCoder.encodeObject(photo, forKey: PropertyKey.photoKey)
-        aCoder.encodeObject(rating, forKey: PropertyKey.ratingKey)
+        aCoder.encodeInteger(rating, forKey: PropertyKey.ratingKey)
     }
     
     required convenience init?(coder aDecoder: NSCoder) {
