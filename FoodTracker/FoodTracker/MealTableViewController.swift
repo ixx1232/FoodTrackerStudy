@@ -17,6 +17,8 @@ class MealTableViewController: UITableViewController {
         super.viewDidLoad()
 
         loadSampleMeals()
+        
+        navigationItem.leftBarButtonItem = editButtonItem()
     }
 
     func loadSampleMeals() {
@@ -58,14 +60,66 @@ class MealTableViewController: UITableViewController {
     }
     
     
+    // MARK: Navigation
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if segue.identifier == "ShowDetail" {
+            
+            let mealDetailViewController = segue.destinationViewController as! MealViewController
+            
+            if let selectedMealCell = sender as? MealTableViewCell {
+                
+                let indexPath = tableView.indexPathForCell(selectedMealCell)!
+                
+                let selectedMeal = meals[indexPath.row]
+                
+                mealDetailViewController.meal = selectedMeal
+            }
+        }
+        else if segue.identifier == "AddItem" {
+            print("Adding new meal.")
+        }
+    }
+    
+    
     @IBAction func unwindToMealList(sender: UIStoryboardSegue) {
         
         if let sourceViewController = sender.sourceViewController as? MealViewController, meal = sourceViewController.meal {
             
-            let newIndexPath = NSIndexPath(forRow: meals.count, inSection: 0)
-            meals.append(meal)
-            tableView.insertRowsAtIndexPaths([newIndexPath], withRowAnimation: UITableViewRowAnimation.Bottom)
+            if let selectedIndexPath = tableView.indexPathForSelectedRow {
+                
+                meals[selectedIndexPath.row] = meal
+                
+                tableView.reloadRowsAtIndexPaths([selectedIndexPath], withRowAnimation: UITableViewRowAnimation.None)
+            }else {
+                
+                let newIndexPath = NSIndexPath(forRow: meals.count, inSection: 0)
+                
+                meals.append(meal)
+                
+                tableView.insertRowsAtIndexPaths([newIndexPath], withRowAnimation: UITableViewRowAnimation.Bottom)
+            }
+            
         }
     }
+    
+    // override to support editing the table view
+    override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
+        
+        if editingStyle == UITableViewCellEditingStyle.Delete {
+            
+            meals.removeAtIndex(indexPath.row)
+            
+            tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: UITableViewRowAnimation.Fade)
+            
+        }else if editingStyle == UITableViewCellEditingStyle.Insert {
+            
+        }
+    }
+    
+    override func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
+        
+        return true
+    }
+    
     
 }
